@@ -1,0 +1,11 @@
+.vscode
+.idea
+
+# Client
+client/node_modules
+client/build
+#--------------------
+
+# Server
+server/node_modules
+#--------------------
