@@ -24,6 +24,7 @@ const Dashboard: React.FC = () => {
     const socket = new WebSocket(`ws://${window.location.hostname}:8080`);
 
     socket.onmessage = (e: MessageEvent) => {
+
       let { cpu, memory, drives, network } = JSON.parse(e.data);
       let newMetrics: Metric[] = [
         { title: 'CPU Usage', value: NaN, valueUnits: '%', maxValue: 100, graph: [0,0,0,0] },

@@ -4,7 +4,21 @@ const WebSocket = require('ws');
 const spawn = require('child_process').spawn;
 const PORT = process.env.PORT || 8081;
 
-const wss = new WebSocket.Server({ port: 8080 });
+let server;
+let wss;
+
+
+if (process.env.NODE_ENVIRONMENT === 'production') {
+  const https = require('https');
+  server = https.createServer({
+    cert: fs.readFileSync('/etc/nginx/certs/moni.rixcian.dev/cert.pem'),
+    key: fs.readFileSync('/etc/nginx/certs/moni.rixcian.dev/key.pem')
+  });
+  
+  wss = new WebSocket.Server({ server });
+} else {
+  wss = new WebSocket.Server({ port: 8080 });
+}
 
 
 wss.on('connection', ws => {
@@ -21,6 +35,11 @@ wss.on('connection', ws => {
   });
 
 });
+
+
+if (process.env.NODE_ENVIRONMENT === 'production') {
+  server.listen(8080);
+}
 
 
 app.use(express.static(`${__dirname}/../client/build/`));
