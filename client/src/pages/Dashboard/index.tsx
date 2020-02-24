@@ -29,10 +29,8 @@ const Dashboard: React.FC = () => {
         { title: 'CPU Usage', value: NaN, valueUnits: '%', maxValue: 100, graph: [0,0,0,0] },
         { title: 'RAM Usage', value: NaN, valueUnits: 'GB', maxValue: NaN, graph: [0] },
         { title: 'Drive Usage', value: NaN, valueUnits: 'GB', maxValue: NaN, graph: [0] },
-        { title: 'Sent/Received Bytes Ratio', value: NaN, valueUnits: '', maxValue: NaN, graph: [0] },
+        { title: 'Received/Sent Bytes', value: NaN, valueUnits: 'GB', maxValue: NaN, graph: [] },
       ];
-      
-      console.log(cpu);
 
       const cpuUsageValue = ((sumNumbersInArray(cpu.percentage_usage) / cpu.count) * 100) / 100;
       newMetrics[0].value = Math.round((cpuUsageValue + Number.EPSILON) * 100) / 100;
@@ -46,8 +44,9 @@ const Dashboard: React.FC = () => {
       newMetrics[2].maxValue = drives.total;
       newMetrics[2].graph = [((100*drives.used) / drives.total)];
   
-      newMetrics[3].value = Math.round(((network.sent/network.received) + Number.EPSILON) * 100) / 100;
-      newMetrics[3].graph = [Math.round((((network.sent/network.received) * 100) + Number.EPSILON) * 100) / 100];
+      newMetrics[3].value = Math.round(((network.received / (10 ** 9)) + Number.EPSILON) * 100) / 100;
+      newMetrics[3].maxValue = Math.round(((network.sent / (10 ** 9)) + Number.EPSILON) * 100) / 100;
+      //newMetrics[3].graph = [Math.round((((network.sent/network.received) * 100) + Number.EPSILON) * 100) / 100];
   
       setMetrics(newMetrics);
     };
@@ -71,7 +70,8 @@ const Dashboard: React.FC = () => {
                     {metric.value.toString()} 
                     <span className="value-units">{metric.valueUnits}</span>
                   </span>
-                  <span className="units">/ 
+                  <span className="units">/
+                    &nbsp;
                     <span className="value-max">{metric.maxValue.toString()}</span>
                     {metric.valueUnits}
                   </span>

@@ -10,6 +10,8 @@ import Memory from './pages/Memory';
 import Docker from './pages/Docker';
 
 import './App.scss';
+import Drives from './pages/Drives';
+import Network from './pages/Network';
 
 const App: React.FC = () => {
   
@@ -33,9 +35,11 @@ const App: React.FC = () => {
 
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/cpu" component={CPU} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/cpu" component={CPU} />
               <Route exact path="/memory" component={Memory} />
+              <Route exact path="/drives" component={Drives} />
+              <Route exact path="/network" component={Network} />
               <Route exact path="/docker" component={Docker} />
             </Switch>
           </div>

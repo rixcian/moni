@@ -6,7 +6,7 @@ import { ReactSVG } from 'react-svg';
 import MoniLogo from '../../assets/img/moni.png';
 import WhaleIcon from '../../assets/icons/whale.svg';
 
-const Sidebar: React.FC = (props) => {
+const Sidebar: React.FC = () => {
 
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -81,6 +81,14 @@ const Sidebar: React.FC = (props) => {
           <NavLink to="/memory" className="menu-item" activeClassName="menu-item-active">
             <FontAwesomeIcon icon="memory" />
             <span>Memory</span>
+          </NavLink>
+          <NavLink to="/drives" className="menu-item" activeClassName="menu-item-active">
+            <FontAwesomeIcon icon="hdd" />
+            <span>Drives</span>
+          </NavLink>
+          <NavLink to="/network" className="menu-item" activeClassName="menu-item-active">
+            <FontAwesomeIcon icon="network-wired" />
+            <span>Network</span>
           </NavLink>
           <NavLink to="/docker" className="menu-item" activeClassName="menu-item-active">
             <ReactSVG src={WhaleIcon} />
