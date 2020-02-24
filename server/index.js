@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const WebSocket = require('ws');
 const spawn = require('child_process').spawn;
+const fs = require('fs');
 const PORT = process.env.PORT || 8081;
 
 let server;
