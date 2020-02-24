@@ -1,45 +1,45 @@
 import React from 'react';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import Sidebar from './components/_layout/Sidebar';
+import Dashboard from './pages/Dashboard';
+import CPU from './pages/CPU';
+import Login from './pages/Login';
+import Memory from './pages/Memory';
+import Docker from './pages/Docker';
 
 import './App.scss';
-import MoniLogo from './assets/img/moni.png';
 
 const App: React.FC = () => {
-
-  const socket = new WebSocket(`ws://${window.location.hostname}:8080`);
-
-  socket.onmessage = (e: MessageEvent) => {
-    console.log(JSON.parse(e.data));
-  };
-
-  const sendMsg = (): void => {
-    socket.send('Hello back!');
-  }
   
   return (
-    <div className="container">
-      <div className="row">
-        <div className="login-box">
-          
-          <img className="login-logo" src={MoniLogo} alt="Moni | Server Monitoring"/>
+    <div className="app">
+        <Router>
+          <Sidebar />
+          <div className="main">
 
-          <h2 className="login-title">Moni. | Login</h2>
+            <div className="tob-bar">
+              <div className="searchbar">
+                <input type="text" placeholder="Search" />
+                <div className="btn-search">
+                  <FontAwesomeIcon icon="search" />
+                </div>
+              </div>
+              <button className="btn-logout">
+                <FontAwesomeIcon icon="sign-out-alt" />
+              </button>
+            </div>
 
-          <div className="form-group">
-            <span>Username</span>
-            <input type="text"/>
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/cpu" component={CPU} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/memory" component={Memory} />
+              <Route exact path="/docker" component={Docker} />
+            </Switch>
           </div>
-
-          <div className="form-group">
-            <span>Password</span>
-            <input type="password"/>
-          </div>
-
-          <div className="btn-login-wrapper">
-            <button className="btn-login">Login</button>
-          </div>
-
-        </div>
-      </div>
+        </Router>
     </div>
   );
 

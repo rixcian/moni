@@ -1,4 +1,4 @@
-import psutil, sys, json
+import psutil, sys, json, time
 
 def getSysData():
   cpus_percentage = psutil.cpu_percent(interval = 1, percpu=True)
@@ -36,4 +36,5 @@ def getSysData():
 
 while True:
   getSysData()
+  time.sleep(int(sys.argv[1]))
   

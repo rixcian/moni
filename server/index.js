@@ -9,16 +9,11 @@ const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', ws => {
 
-  const monScript = spawn('python3', ['./mon.py']);
+  const monScript = spawn('python3', ['./mon.py', '5']);
 
   monScript.stdout.on('data', data => {
     const outputData = JSON.parse(data.toString());
     ws.send(JSON.stringify(outputData));
-  });
-
-  ws.on('message', msg => {
-    console.log(`Message: ${msg}`);
-    ws.send('Im sending this respond...');
   });
 
   ws.on('close', () => {

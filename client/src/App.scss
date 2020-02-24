@@ -1,11 +1,30 @@
+// Colors
 $white-darker: #f5f5f5;
-$default-blue: #3135b2;
+$blue-default: #1f67d3;
+$blue-darker:#282848;
+$blue-light: #1a7add;
+
+// Metrics
+$sidebar-height-mobile: 60px;
 
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Nunito',;
+  font-family: 'Nunito', sans-serif;
+  color: $blue-darker;
   background-color: $white-darker;
+}
+
+.app {
+  display: flex;
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  margin-left: auto;
+  background-color: $white-darker;
+  transition: all 0.25s ease-in-out 0s;
 }
 
 .form-group {
@@ -35,6 +54,226 @@ body {
 }
 
 
+
+
+
+
+
+
+
+// Pages
+.page {
+  padding: 0 1rem;
+}
+
+@media (min-width: 576px) {
+  .page {
+    padding: 0 2rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+// Top bar
+.tob-bar {
+  margin: 10px 65px 10px 65px;
+  width: initial;
+  height: 50px;
+  display: grid;
+  grid-template-columns: 100% 1fr;
+
+  .searchbar {
+    width: 100%;
+    max-width: 600px;
+    padding: 0 15px 0 0px;
+    display: flex;
+    margin: 0 auto;
+
+    input {
+      width: calc(100% - 50px);
+      height: 100%;
+      border: none;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      background-color: #ffffff;
+      box-shadow: 10px 5px 10px 2px #e8e8e8;
+      outline: none;
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      line-height: 1rem;
+      font-family: 'Nunito',;
+      font-weight: 600;
+      color: $blue-darker;
+    }
+
+    .btn-search {
+      width: 50px;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      background-color: $blue-darker;
+      box-shadow: 10px 5px 10px 2px #e8e8e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.25rem;
+    }
+  }
+
+  .btn-logout {
+    width: 50px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    box-shadow: 10px 5px 10px 2px #e8e8e8;
+    outline: none;
+    font-size: 1.25rem;
+    color: $blue-darker;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .searchbar {
+    padding: 0 65px 0 55px;
+  }
+}
+
+
+
+
+
+
+
+
+
+// Sidebar
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  left: -260px;
+  z-index: 10;
+  background-color: #ffffff;
+  transition: all .25s ease-in-out;
+
+  .menu-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 10px 5px 10px 2px darken($white-darker, 5%);
+    position: absolute;
+    top: 10px;
+    left: 260px;
+    z-index: 100;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      font-size: 1.5rem;
+      color: $blue-darker;
+    }
+  }
+}
+
+.menu {
+  .menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+
+    img {
+      width: 32px;
+    }
+  
+    h2 {
+      margin: 0 0 0 1rem;
+      color: $blue-darker;
+    }
+  }
+
+  .menu-divider {
+    width: 85%;
+    height: 1px;
+    margin: 0 auto;
+    background-color: $white-darker;
+  }
+
+  .menu-items {
+    margin-top: 2rem;
+  }
+
+  .menu-item {
+    margin: 2rem 0 2rem 2rem;
+    padding: .5rem 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    color: #b8bcd5;
+    color:$blue-darker;
+    opacity: .45;
+    transition: all .25s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .95;
+      border-right: 2px solid $blue-darker;
+    }
+  }
+
+  .menu-item svg {
+    font-size: 1.25rem;
+    width: 2rem;
+  }
+
+  .menu-item span {
+    font-weight: 800;
+    margin-left: 2rem;
+    color: $blue-darker;
+  }
+
+  .menu-item-active {
+    opacity: 1;
+    border-right: 2px solid $blue-darker;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    left: 0px;
+  }
+}
+
+
+
+
+
+
+
+
+
 // Login
 .login-box {
   width: 280px;
@@ -43,6 +282,7 @@ body {
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
+  color: $blue-darker;
 
   .login-title {
     margin-block-start: 0;
@@ -65,14 +305,18 @@ body {
     width: 100%;
     height: 2.75rem;
     border-radius: 5px;
-    border: 1px solid white;
+    border: 1px solid #ffffff;
     text-transform: uppercase;
-    background-color: $default-blue;
-    color: white;
+    background-color: $blue-default;
+    color: #ffffff;
     font-weight: 800;
     font-size: 1rem;
     letter-spacing: .03rem;
     font-family: 'Nunito';
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
