@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
   }
   
   useEffect(() => {
-    const socket = new WebSocket(`ws://${window.location.hostname}:8080`);
+    const socket = new WebSocket(`wss://${window.location.hostname}:8080`);
 
     socket.onmessage = (e: MessageEvent) => {
 
