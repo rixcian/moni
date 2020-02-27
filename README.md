@@ -12,19 +12,19 @@ Moni. is server monitoring app that's showing real-time data about hardware usag
 
 ## How it works
 
-The app consits of two parts. Websocket server (Node.js) and SPA (React). After client open SPA, it connects to WS server, which starts Python script. This script is monitoring hardware usage that afterwards sending this data in JSON on standard output and Node is just "reading" this data and sending them to the client SPA.
+The app consists of two parts. Websocket server (Node.js) and SPA (React). After client open SPA, it connects to WS server, which starts Python script. This script is monitoring hardware usage that afterwards sending this data in JSON on standard output and Node is just "reading" this data and sending them to the client SPA.
 
 
 
 ## How to build & run
 
-1. Building image
+1. Building an image
 
 ```bash
 $ docker build --network=host --no-cache . -t rixcian/moni
 ```
 
-2. Running container
+2. Running a container
 
 ```bash
 $ docker run --name moni -p 80:8081 -p 8080:8080 -d rixcian/moni
